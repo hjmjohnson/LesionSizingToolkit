@@ -176,14 +176,14 @@ public:
 
   ///* Set the Threshold value for detected edges. */
   itkSetMacro(UpperThreshold, OutputImagePixelType);
-  itkGetMacro(UpperThreshold, OutputImagePixelType);
+  itkGetConstMacro(UpperThreshold, OutputImagePixelType);
 
   itkSetMacro(LowerThreshold, OutputImagePixelType);
-  itkGetMacro(LowerThreshold, OutputImagePixelType);
+  itkGetConstMacro(LowerThreshold, OutputImagePixelType);
 
   /* Set the Thresholdvalue for detected edges. */
   itkSetMacro(OutsideValue, OutputImagePixelType);
-  itkGetMacro(OutsideValue, OutputImagePixelType);
+  itkGetConstMacro(OutsideValue, OutputImagePixelType);
 
   OutputImageType *
   GetNonMaximumSuppressionImage() const
