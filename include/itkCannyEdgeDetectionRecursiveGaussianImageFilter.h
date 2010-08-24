@@ -30,13 +30,9 @@
 #include "itkSparseFieldLayer.h"
 #include "itkObjectStore.h"
 
-
 namespace itk
 {
-using MultiThreader = MultiThreaderBase;
-
-
-template <typename TValueType>
+template <class TValueType>
 class ListNode
 {
 public:
@@ -45,7 +41,6 @@ public:
   ListNode * Next;
   ListNode * Previous;
 };
-
 
 /** \class CannyEdgeDetectionRecursiveGaussianImageFilter
  *
@@ -202,7 +197,6 @@ public:
   itkConceptMacro(OutputIsFloatingPointCheck, (Concept::IsFloatingPoint<OutputImagePixelType>));
   /** End concept checking */
 #endif
-
 protected:
   CannyEdgeDetectionRecursiveGaussianImageFilter();
   CannyEdgeDetectionRecursiveGaussianImageFilter(const Self &) {}
@@ -215,7 +209,7 @@ protected:
   using MultiplyImageFilterType = MultiplyImageFilter<OutputImageType, OutputImageType, OutputImageType>;
 
 private:
-  ~CannyEdgeDetectionRecursiveGaussianImageFilter() override = default;
+  virtual ~CannyEdgeDetectionRecursiveGaussianImageFilter() {}
 
   /** Thread-Data Structure   */
   struct CannyThreadStruct
@@ -234,7 +228,6 @@ private:
   /** Edge linking funciton */
   void
   FollowEdge(IndexType index);
-
 
   /** Calculate the second derivative of the smoothed image, it writes the
    *  result to m_UpdateBuffer using the ThreadedCompute2ndDerivative() method
@@ -336,7 +329,6 @@ private:
   typename ListNodeStorageType::Pointer m_NodeStore;
   ListPointerType                       m_NodeList;
 };
-
 } // end of namespace itk
 
 #ifndef ITK_MANUAL_INSTANTIATION
