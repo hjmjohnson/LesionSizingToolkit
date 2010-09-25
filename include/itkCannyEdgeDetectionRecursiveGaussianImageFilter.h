@@ -18,14 +18,10 @@
 #ifndef itkCannyEdgeDetectionRecursiveGaussianImageFilter_h
 #define itkCannyEdgeDetectionRecursiveGaussianImageFilter_h
 
-#include "itkImageToImageFilter.h"
-#include "itkImage.h"
-#include "itkFixedArray.h"
 #include "itkConstNeighborhoodIterator.h"
 #include "itkSmoothingRecursiveGaussianImageFilter.h"
 #include "itkMultiplyImageFilter.h"
-#include "itkZeroFluxNeumannBoundaryCondition.h"
-#include "itkMultiThreaderBase.h"
+#include "itkMultiThreader.h"
 #include "itkDerivativeOperator.h"
 #include "itkSparseFieldLayer.h"
 #include "itkObjectStore.h"
