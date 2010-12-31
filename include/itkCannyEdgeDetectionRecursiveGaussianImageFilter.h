@@ -102,6 +102,7 @@ public:
   using InputImagePixelType = typename TInputImage::PixelType;
   using OutputImagePixelType = typename TOutputImage::PixelType;
   using IndexType = typename TInputImage::IndexType;
+  using SizeValueType = typename TInputImage::SizeValueType;
 
   using GaussianImageFilterType = SmoothingRecursiveGaussianImageFilter<InputImageType, OutputImageType>;
   using ScalarRealType = typename GaussianImageFilterType::ScalarRealType;
@@ -319,8 +320,8 @@ private:
 
   std::slice m_ComputeCannyEdgeSlice[ImageDimension];
 
-  unsigned long m_Stride[ImageDimension];
-  unsigned long m_Center;
+  SizeValueType m_Stride[ImageDimension];
+  SizeValueType m_Center;
 
   typename ListNodeStorageType::Pointer m_NodeStore;
   ListPointerType                       m_NodeList;
