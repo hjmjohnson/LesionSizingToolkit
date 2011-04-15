@@ -80,10 +80,11 @@ public:
  *
  * \sa SmoothingRecursiveGaussianImageFilter
  * \sa ZeroCrossingImageFilter
- * \sa ThresholdImageFilter */
-template <typename TInputImage, typename TOutputImage>
-class ITK_TEMPLATE_EXPORT CannyEdgeDetectionRecursiveGaussianImageFilter
-  : public ImageToImageFilter<TInputImage, TOutputImage>
+ * \sa ThresholdImageFilter
+ * \ingroup ITK-ImageFeature
+ */
+template <class TInputImage, class TOutputImage>
+class ITK_EXPORT CannyEdgeDetectionRecursiveGaussianImageFilter : public ImageToImageFilter<TInputImage, TOutputImage>
 {
 public:
   /** Standard "Self" & Superclass type alias.  */
