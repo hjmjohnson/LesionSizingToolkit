@@ -152,7 +152,7 @@ template <typename TInputImage, typename TOutputImage>
 void
 CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::ThreadedCompute2ndDerivative(
   const OutputImageRegionType & outputRegionForThread,
-  int                           threadId)
+  ThreadIdType                  threadId)
 {
   ZeroFluxNeumannBoundaryCondition<TInputImage> nbc;
 
@@ -469,7 +469,7 @@ template <class TInputImage, class TOutputImage>
 void
 CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::ThreadedCompute2ndDerivativePos(
   const OutputImageRegionType & outputRegionForThread,
-  int                           threadId)
+  ThreadIdType                  threadId)
 {
   ZeroFluxNeumannBoundaryCondition<TInputImage> nbc;
 

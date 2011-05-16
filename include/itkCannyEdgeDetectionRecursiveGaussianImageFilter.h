@@ -250,7 +250,7 @@ private:
    *  \sa Compute2ndDerivative
    *  \sa Compute2ndDerivativeThreaderCallBack   */
   void
-  ThreadedCompute2ndDerivative(const OutputImageRegionType & outputRegionForThread, int threadId);
+  ThreadedCompute2ndDerivative(const OutputImageRegionType & outputRegionForThread, ThreadIdType threadId);
 
   /** This callback method uses ImageSource::SplitRequestedRegion to acquire an
    * output region that it passes to ThreadedCompute2ndDerivative for
@@ -277,7 +277,7 @@ private:
    *  \sa Compute2ndDerivativePos
    *  \sa Compute3ndDerivativePosThreaderCallBack   */
   void
-  ThreadedCompute2ndDerivativePos(const OutputImageRegionType & outputRegionForThread, int threadId);
+  ThreadedCompute2ndDerivativePos(const OutputImageRegionType & outputRegionForThread, ThreadIdType threadId);
 
   /**This callback method uses ImageSource::SplitRequestedRegion to acquire an
    * output region that it passes to ThreadedCompute2ndDerivative for
