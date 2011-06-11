@@ -276,7 +276,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Compu
 {
   CannyThreadStruct * str;
 
-  int total, threadId, threadCount;
+  ThreadIdType total, threadId, threadCount;
 
   threadId = ((MultiThreaderBase::WorkUnitInfo *)(arg))->WorkUnitID;
   threadCount = ((MultiThreaderBase::WorkUnitInfo *)(arg))->NumberOfWorkUnits;
@@ -582,7 +582,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Compu
 {
   CannyThreadStruct * str;
 
-  int total, threadId, threadCount;
+  ThreadIdType total, threadId, threadCount;
 
   threadId = ((MultiThreaderBase::WorkUnitInfo *)(arg))->WorkUnitID;
   threadCount = ((MultiThreaderBase::WorkUnitInfo *)(arg))->NumberOfWorkUnits;
