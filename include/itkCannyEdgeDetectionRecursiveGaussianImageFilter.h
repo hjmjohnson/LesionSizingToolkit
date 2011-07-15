@@ -80,7 +80,7 @@ public:
  * \sa SmoothingRecursiveGaussianImageFilter
  * \sa ZeroCrossingImageFilter
  * \sa ThresholdImageFilter
- * \ingroup ITK-ImageFeature
+ * \ingroup ITKImageFeature
  */
 template <class TInputImage, class TOutputImage>
 class ITK_EXPORT CannyEdgeDetectionRecursiveGaussianImageFilter : public ImageToImageFilter<TInputImage, TOutputImage>
