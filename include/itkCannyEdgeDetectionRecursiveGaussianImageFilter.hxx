@@ -36,8 +36,6 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage,
 
   m_Sigma.Fill(1.0);
 
-  m_OutsideValue = NumericTraits<OutputImagePixelType>::Zero;
-  m_Threshold = NumericTraits<OutputImagePixelType>::Zero;
   m_UpperThreshold = NumericTraits<OutputImagePixelType>::Zero;
   m_LowerThreshold = NumericTraits<OutputImagePixelType>::Zero;
 
@@ -656,16 +654,11 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Print
   Superclass::PrintSelf(os, indent);
 
   os << "Sigma: " << m_Sigma << std::endl;
-  os << indent << "Threshold: " << static_cast<typename NumericTraits<OutputImagePixelType>::PrintType>(m_Threshold)
-     << std::endl;
   os << indent
      << "UpperThreshold: " << static_cast<typename NumericTraits<OutputImagePixelType>::PrintType>(m_UpperThreshold)
      << std::endl;
   os << indent
      << "LowerThreshold: " << static_cast<typename NumericTraits<OutputImagePixelType>::PrintType>(m_LowerThreshold)
-     << std::endl;
-  os << indent
-     << "OutsideValue: " << static_cast<typename NumericTraits<OutputImagePixelType>::PrintType>(m_OutsideValue)
      << std::endl;
   os << "Center: " << m_Center << std::endl;
   os << "Stride: " << m_Stride << std::endl;
