@@ -192,7 +192,6 @@ public:
 #endif
 protected:
   CannyEdgeDetectionRecursiveGaussianImageFilter();
-  CannyEdgeDetectionRecursiveGaussianImageFilter(const Self &) {}
   void
   PrintSelf(std::ostream & os, Indent indent) const override;
 
@@ -202,6 +201,10 @@ protected:
   using MultiplyImageFilterType = MultiplyImageFilter<OutputImageType, OutputImageType, OutputImageType>;
 
 private:
+  CannyEdgeDetectionRecursiveGaussianImageFilter(const Self &); // purposely not implemented
+  void
+  operator=(const Self &); // purposely not implemented
+
   virtual ~CannyEdgeDetectionRecursiveGaussianImageFilter() {}
 
   /** Thread-Data Structure   */
