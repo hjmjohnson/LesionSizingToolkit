@@ -297,7 +297,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Gener
   m_MultiplyImageFilter->GraftOutput(m_GaussianFilter->GetOutput());
   m_MultiplyImageFilter->Update();
 
-  // Then do the double threshoulding upon the edge reponses
+  // Then do the double threshoulding upon the edge responses
   this->HysteresisThresholding();
 }
 
@@ -389,7 +389,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Follo
     uit.SetIndex(cIndex);
     uit.Value() = 1;
 
-    // Search the neighbors for new indicies to add to the list.
+    // Search the neighbors for new indices to add to the list.
     for (int i = 0; i < nSize; i++)
     {
       nIndex = oit.GetIndex(i);
