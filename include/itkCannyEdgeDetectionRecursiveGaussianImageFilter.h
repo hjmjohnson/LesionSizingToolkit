@@ -190,6 +190,7 @@ public:
   itkConceptMacro(OutputIsFloatingPointCheck, (Concept::IsFloatingPoint<OutputImagePixelType>));
   /** End concept checking */
 #endif
+
 protected:
   CannyEdgeDetectionRecursiveGaussianImageFilter();
   void
