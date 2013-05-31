@@ -83,7 +83,7 @@ public:
  * \ingroup ITKImageFeature
  */
 template <class TInputImage, class TOutputImage>
-class ITK_EXPORT CannyEdgeDetectionRecursiveGaussianImageFilter : public ImageToImageFilter<TInputImage, TOutputImage>
+class CannyEdgeDetectionRecursiveGaussianImageFilter : public ImageToImageFilter<TInputImage, TOutputImage>
 {
 public:
   /** Standard "Self" & Superclass type alias.  */
