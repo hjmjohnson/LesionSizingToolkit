@@ -102,7 +102,6 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Gener
 {
   // call the superclass' implementation of this method
   Superclass::GenerateInputRequestedRegion();
-  return;
 }
 
 template <typename TInputImage, typename TOutputImage>
