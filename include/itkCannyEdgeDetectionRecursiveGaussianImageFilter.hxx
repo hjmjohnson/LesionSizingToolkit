@@ -28,7 +28,7 @@
 
 namespace itk
 {
-template <class TInputImage, class TOutputImage>
+template <typename TInputImage, typename TOutputImage>
 CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage,
                                                TOutputImage>::CannyEdgeDetectionRecursiveGaussianImageFilter()
 {
@@ -415,7 +415,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Follo
   }
 }
 
-template <class TInputImage, class TOutputImage>
+template <typename TInputImage, typename TOutputImage>
 void
 CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::ThreadedCompute2ndDerivativePos(
   const OutputImageRegionType & outputRegionForThread,
