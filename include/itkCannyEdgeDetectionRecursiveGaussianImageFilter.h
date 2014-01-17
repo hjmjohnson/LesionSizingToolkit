@@ -178,8 +178,8 @@ public:
    * pipeline execution model.
    *
    * \sa ImageToImageFilter::GenerateInputRequestedRegion()  */
-  void
-  GenerateInputRequestedRegion() noexcept(false) override;
+  virtual void
+  GenerateInputRequestedRegion();
 
 #ifdef ITK_USE_CONCEPT_CHECKING
   // Begin concept checking
