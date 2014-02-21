@@ -149,7 +149,9 @@ public:
   ScalarRealType
   GetSigma() const;
 
-  /** TODO:  Document in the ITKv4 migration guide that
+  /** \brief Set the Threshold value for detected edges.
+   *
+   * TODO:  Document in the ITKv4 migration guide that
    * the SetThreshold member function was removed from
    * the CannyEdgeDetectionRecursiveGaussianImageFilter, and that both
    * UpperThreshold and LowerThreshold need to be set.
@@ -157,8 +159,6 @@ public:
    * change "myfilter->SetThrehsold" to "myfilter->SetUpperThreshold",
    * and add "myfilter->SetLowerThreshold(GetUpperThreshold()/2.0)"
    */
-
-  ///* Set the Threshold value for detected edges. */
   itkSetMacro(UpperThreshold, OutputImagePixelType);
   itkGetConstMacro(UpperThreshold, OutputImagePixelType);
 
