@@ -36,8 +36,8 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage,
 
   m_Sigma.Fill(1.0);
 
-  m_UpperThreshold = NumericTraits<OutputImagePixelType>::Zero;
-  m_LowerThreshold = NumericTraits<OutputImagePixelType>::Zero;
+  m_UpperThreshold = NumericTraits<OutputImagePixelType>::ZeroValue();
+  m_LowerThreshold = NumericTraits<OutputImagePixelType>::ZeroValue();
 
   m_GaussianFilter = GaussianImageFilterType::New();
   m_MultiplyImageFilter = MultiplyImageFilterType::New();
@@ -175,7 +175,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Compu
     dxx[i] = innerProduct(m_ComputeCannyEdgeSlice[i], it, m_ComputeCannyEdge2ndDerivativeOper);
   }
 
-  OutputImagePixelType deriv = NumericTraits<OutputImagePixelType>::Zero;
+  OutputImagePixelType deriv = NumericTraits<OutputImagePixelType>::ZeroValue();
 
   int k = 0;
   // Calculate the 2nd derivative
@@ -323,7 +323,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Hyste
   uit.GoToBegin();
   while (!uit.IsAtEnd())
   {
-    uit.Value() = NumericTraits<OutputImagePixelType>::Zero;
+    uit.Value() = NumericTraits<OutputImagePixelType>::ZeroValue();
     ++uit;
   }
 
@@ -368,7 +368,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Follo
   ImageRegionIteratorWithIndex<TOutputImage> uit(this->m_OutputImage, this->m_OutputImage->GetRequestedRegion());
 
   uit.SetIndex(index);
-  if (uit.Get() == NumericTraits<OutputImagePixelType>::One)
+  if (uit.Get() == NumericTraits<OutputImagePixelType>::OneValue())
   {
     // we must remove the node if we are not going to follow it!
 
@@ -400,14 +400,14 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Follo
       uit.SetIndex(nIndex);
       if (inputRegion.IsInside(nIndex))
       {
-        if (oit.GetPixel(i) > m_LowerThreshold && uit.Value() != NumericTraits<OutputImagePixelType>::One)
+        if (oit.GetPixel(i) > m_LowerThreshold && uit.Value() != NumericTraits<OutputImagePixelType>::OneValue())
         {
           node = m_NodeStore->Borrow(); // get a new node struct
           node->m_Value = nIndex;       // set its value
           m_NodeList->PushFront(node);  // add the new node to the list
 
           uit.SetIndex(nIndex);
-          uit.Value() = NumericTraits<OutputImagePixelType>::One;
+          uit.Value() = NumericTraits<OutputImagePixelType>::OneValue();
         }
       }
     }
@@ -449,7 +449,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Threa
   // support progress methods/callbacks
   ProgressReporter progress(this, threadId, outputRegionForThread.GetNumberOfPixels(), 100, 0.5f, 0.5f);
 
-  InputImagePixelType zero = NumericTraits<InputImagePixelType>::Zero;
+  InputImagePixelType zero = NumericTraits<InputImagePixelType>::ZeroValue();
 
   OutputImagePixelType dx[ImageDimension];
   OutputImagePixelType dx1[ImageDimension];
