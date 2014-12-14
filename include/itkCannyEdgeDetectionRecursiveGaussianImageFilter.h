@@ -181,7 +181,7 @@ public:
    *
    * \sa ImageToImageFilter::GenerateInputRequestedRegion()  */
   virtual void
-  GenerateInputRequestedRegion();
+  GenerateInputRequestedRegion() ITK_OVERRIDE;
 
 #ifdef ITK_USE_CONCEPT_CHECKING
   // Begin concept checking
@@ -196,10 +196,10 @@ public:
 protected:
   CannyEdgeDetectionRecursiveGaussianImageFilter();
   void
-  PrintSelf(std::ostream & os, Indent indent) const override;
+  PrintSelf(std::ostream & os, Indent indent) const ITK_OVERRIDE;
 
   void
-  GenerateData() override;
+  GenerateData() ITK_OVERRIDE;
 
   using MultiplyImageFilterType = MultiplyImageFilter<OutputImageType, OutputImageType, OutputImageType>;
 
