@@ -15,8 +15,8 @@
  *  limitations under the License.
  *
  *=========================================================================*/
-#ifndef __itkCannyEdgeDetectionRecursiveGaussianImageFilter_hxx
-#define __itkCannyEdgeDetectionRecursiveGaussianImageFilter_hxx
+#ifndef itkCannyEdgeDetectionRecursiveGaussianImageFilter_hxx
+#define itkCannyEdgeDetectionRecursiveGaussianImageFilter_hxx
 #include "itkCannyEdgeDetectionRecursiveGaussianImageFilter.h"
 
 #include "itkZeroCrossingImageFilter.h"

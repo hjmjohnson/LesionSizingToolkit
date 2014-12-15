@@ -15,8 +15,8 @@
  *  limitations under the License.
  *
  *=========================================================================*/
-#ifndef __itkCannyEdgeDetectionRecursiveGaussianImageFilter_h
-#define __itkCannyEdgeDetectionRecursiveGaussianImageFilter_h
+#ifndef itkCannyEdgeDetectionRecursiveGaussianImageFilter_h
+#define itkCannyEdgeDetectionRecursiveGaussianImageFilter_h
 
 #include "itkConstNeighborhoodIterator.h"
 #include "itkSmoothingRecursiveGaussianImageFilter.h"
