@@ -25,6 +25,7 @@
 #include "itkDerivativeOperator.h"
 #include "itkSparseFieldLayer.h"
 #include "itkObjectStore.h"
+#include "itkMath.h"
 
 namespace itk
 {

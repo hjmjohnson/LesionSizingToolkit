@@ -25,6 +25,7 @@
 #include "itkProgressReporter.h"
 #include "itkGradientMagnitudeImageFilter.h"
 #include "itkImageRegionIteratorWithIndex.h"
+#include "itkMath.h"
 
 namespace itk
 {
@@ -374,7 +375,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Follo
   ImageRegionIteratorWithIndex<TOutputImage> uit(this->m_OutputImage, this->m_OutputImage->GetRequestedRegion());
 
   uit.SetIndex(index);
-  if (uit.Get() == NumericTraits<OutputImagePixelType>::OneValue())
+  if (Math::ExactlyEquals(uit.Get(), NumericTraits<OutputImagePixelType>::OneValue()))
   {
     // we must remove the node if we are not going to follow it!
 
@@ -406,7 +407,8 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Follo
       uit.SetIndex(nIndex);
       if (inputRegion.IsInside(nIndex))
       {
-        if (oit.GetPixel(i) > m_LowerThreshold && uit.Value() != NumericTraits<OutputImagePixelType>::OneValue())
+        if (oit.GetPixel(i) > m_LowerThreshold &&
+            Math::NotExactlyEquals(uit.Value(), NumericTraits<OutputImagePixelType>::OneValue()))
         {
           node = m_NodeStore->Borrow(); // get a new node struct
           node->m_Value = nIndex;       // set its value
