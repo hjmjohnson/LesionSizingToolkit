@@ -205,9 +205,7 @@ protected:
   using MultiplyImageFilterType = MultiplyImageFilter<OutputImageType, OutputImageType, OutputImageType>;
 
 private:
-  CannyEdgeDetectionRecursiveGaussianImageFilter(const Self &) ITK_DELETE_FUNCTION;
-  void
-  operator=(const Self &) ITK_DELETE_FUNCTION;
+  ITK_DISALLOW_COPY_AND_ASSIGN(CannyEdgeDetectionRecursiveGaussianImageFilter);
 
   virtual ~CannyEdgeDetectionRecursiveGaussianImageFilter() {}
 
