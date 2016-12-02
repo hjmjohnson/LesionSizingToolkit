@@ -30,7 +30,7 @@
 namespace itk
 {
 template <typename TValue>
-class ListNode
+class ITK_TEMPLATE_EXPORT ListNode
 {
 public:
   TValue m_Value;
@@ -86,7 +86,8 @@ public:
  * \ingroup ITKImageFeature
  */
 template <typename TInputImage, typename TOutputImage>
-class CannyEdgeDetectionRecursiveGaussianImageFilter : public ImageToImageFilter<TInputImage, TOutputImage>
+class ITK_TEMPLATE_EXPORT CannyEdgeDetectionRecursiveGaussianImageFilter
+  : public ImageToImageFilter<TInputImage, TOutputImage>
 {
 public:
   /** Standard "Self" & Superclass type alias.  */
