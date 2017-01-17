@@ -210,27 +210,27 @@ private:
 
   virtual ~CannyEdgeDetectionRecursiveGaussianImageFilter() {}
 
-  /** Thread-Data Structure   */
+  /** Thread-Data structure. */
   struct CannyThreadStruct
   {
     CannyEdgeDetectionRecursiveGaussianImageFilter * Filter;
   };
 
-  /** This allocate storage for m_UpdateBuffer, m_UpdateBuffer1 */
+  /** Allocate storage for update buffers used during calculation of multiple steps. */
   void
   AllocateUpdateBuffer();
 
-  /** Implement hysteresis thresholding */
+  /** Implement hysteresis thresholding. */
   void
   HysteresisThresholding();
 
-  /** Edge linking funciton */
+  /** Edge linking function. */
   void
   FollowEdge(IndexType index, const OutputImageType * multiplyImageFilterOutput);
 
   /** Calculate the second derivative of the smoothed image, it writes the
-   *  result to m_UpdateBuffer using the ThreadedCompute2ndDerivative() method
-   *  and multithreading mechanism.   */
+   *  result to the update buffer using the ThreadedCompute2ndDerivative() method
+   *  and multithreading mechanism. */
   void
   Compute2ndDerivative();
 
@@ -259,7 +259,7 @@ private:
   static ITK_THREAD_RETURN_TYPE
   Compute2ndDerivativeThreaderCallback(void * arg);
 
-  /** This methos is used to calculate the 2nd derivative for
+  /** This method is used to calculate the 2nd derivative for
    * non-boundary pixels. It is called by the ThreadedCompute2ndDerivative
    * method. */
   OutputImagePixelType
@@ -280,39 +280,34 @@ private:
   void
   ThreadedCompute2ndDerivativePos(const OutputImageRegionType & outputRegionForThread, ThreadIdType threadId);
 
-  /**This callback method uses ImageSource::SplitRequestedRegion to acquire an
+  /** This callback method uses ImageSource::SplitRequestedRegion to acquire an
    * output region that it passes to ThreadedCompute2ndDerivative for
-   * processing.   */
+   * processing. */
   static ITK_THREAD_RETURN_TYPE
   Compute2ndDerivativePosThreaderCallback(void * arg);
 
   /** Standard deviation of the gaussian used for smoothing */
   SigmaArrayType m_Sigma;
 
-  /** The maximum error of the gaussian blurring kernel in each dimensional
-   * direction.  */
   ArrayType m_MaximumError;
 
-  /** Upper threshold value for identifying edges. */
   OutputImagePixelType m_UpperThreshold; // should be float here?
 
-  /** Lower threshold value for identifying edges. */
   OutputImagePixelType m_LowerThreshold; // should be float here?
 
-  /** Update buffers used during calculation of multiple steps */
   typename OutputImageType::Pointer m_UpdateBuffer1;
 
-  /** Gaussian filter to smooth the input image  */
+  /** Gaussian filter to smooth the input image. */
   typename GaussianImageFilterType::Pointer m_GaussianFilter;
 
   /** Multiply image filter to multiply with the zero crossings of the second
-   *  derivative.  */
+   *  derivative. */
   typename MultiplyImageFilterType::Pointer m_MultiplyImageFilter;
 
   /** Function objects that are used in the inner loops of derivatiVex
-      calculations. */
-  DerivativeOperator<OutputImagePixelType, Self::ImageDimension> m_ComputeCannyEdge1stDerivativeOper;
-  DerivativeOperator<OutputImagePixelType, Self::ImageDimension> m_ComputeCannyEdge2ndDerivativeOper;
+   *  calculations. */
+  DerivativeOperator<OutputImagePixelType, itkGetStaticConstMacro(ImageDimension)> m_ComputeCannyEdge1stDerivativeOper;
+  DerivativeOperator<OutputImagePixelType, itkGetStaticConstMacro(ImageDimension)> m_ComputeCannyEdge2ndDerivativeOper;
 
   std::slice m_ComputeCannyEdgeSlice[ImageDimension];
 
