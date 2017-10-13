@@ -208,7 +208,7 @@ protected:
 private:
   ITK_DISALLOW_COPY_AND_ASSIGN(CannyEdgeDetectionRecursiveGaussianImageFilter);
 
-  virtual ~CannyEdgeDetectionRecursiveGaussianImageFilter() {}
+  virtual ~CannyEdgeDetectionRecursiveGaussianImageFilter() ITK_OVERRIDE {}
 
   /** Thread-Data structure. */
   struct CannyThreadStruct
