@@ -182,8 +182,8 @@ public:
    * pipeline execution model.
    *
    * \sa ImageToImageFilter::GenerateInputRequestedRegion()  */
-  virtual void
-  GenerateInputRequestedRegion() ITK_OVERRIDE;
+  void
+  GenerateInputRequestedRegion() override;
 
 #ifdef ITK_USE_CONCEPT_CHECKING
   // Begin concept checking
@@ -198,17 +198,17 @@ public:
 protected:
   CannyEdgeDetectionRecursiveGaussianImageFilter();
   void
-  PrintSelf(std::ostream & os, Indent indent) const ITK_OVERRIDE;
+  PrintSelf(std::ostream & os, Indent indent) const override;
 
   void
-  GenerateData() ITK_OVERRIDE;
+  GenerateData() override;
 
   using MultiplyImageFilterType = MultiplyImageFilter<OutputImageType, OutputImageType, OutputImageType>;
 
 private:
   ITK_DISALLOW_COPY_AND_ASSIGN(CannyEdgeDetectionRecursiveGaussianImageFilter);
 
-  virtual ~CannyEdgeDetectionRecursiveGaussianImageFilter() ITK_OVERRIDE {}
+  ~CannyEdgeDetectionRecursiveGaussianImageFilter() override {}
 
   /** Thread-Data structure. */
   struct CannyThreadStruct

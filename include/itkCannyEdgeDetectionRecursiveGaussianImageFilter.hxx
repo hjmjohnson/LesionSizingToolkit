@@ -77,7 +77,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage,
   m_NodeStore = ListNodeStorageType::New();
   m_NodeList = ListType::New();
 
-  m_OutputImage = ITK_NULLPTR;
+  m_OutputImage = nullptr;
 }
 
 template <typename TInputImage, typename TOutputImage>
@@ -112,7 +112,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Threa
 
   ImageRegionIterator<TOutputImage> it;
 
-  void * globalData = ITK_NULLPTR;
+  void * globalData = nullptr;
 
   // Here input is the result from the gaussian filter output is the update
   // buffer
@@ -305,7 +305,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Gener
   this->HysteresisThresholding();
 
   this->GraftOutput(output);
-  this->m_OutputImage = ITK_NULLPTR;
+  this->m_OutputImage = nullptr;
 }
 
 template <typename TInputImage, typename TOutputImage>
