@@ -228,10 +228,10 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Compu
 
   ThreadIdType total, threadId, threadCount;
 
-  threadId = ((MultiThreaderBase::WorkUnitInfo *)(arg))->WorkUnitID;
-  threadCount = ((MultiThreaderBase::WorkUnitInfo *)(arg))->NumberOfWorkUnits;
+  threadId = ((MultiThreaderBase::ThreadInfoStruct *)(arg))->ThreadID;
+  threadCount = ((MultiThreaderBase::ThreadInfoStruct *)(arg))->NumberOfThreads;
 
-  str = (CannyThreadStruct *)(((MultiThreaderBase::WorkUnitInfo *)(arg))->UserData);
+  str = (CannyThreadStruct *)(((MultiThreaderBase::ThreadInfoStruct *)(arg))->UserData);
 
   // Execute the actual method with appropriate output region
   // first find out how many pieces extent can be split into.
@@ -537,10 +537,10 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Compu
 
   ThreadIdType total, threadId, threadCount;
 
-  threadId = ((MultiThreaderBase::WorkUnitInfo *)(arg))->WorkUnitID;
-  threadCount = ((MultiThreaderBase::WorkUnitInfo *)(arg))->NumberOfWorkUnits;
+  threadId = ((MultiThreaderBase::ThreadInfoStruct *)(arg))->ThreadID;
+  threadCount = ((MultiThreaderBase::ThreadInfoStruct *)(arg))->NumberOfThreads;
 
-  str = (CannyThreadStruct *)(((MultiThreaderBase::WorkUnitInfo *)(arg))->UserData);
+  str = (CannyThreadStruct *)(((MultiThreaderBase::ThreadInfoStruct *)(arg))->UserData);
 
   // Execute the actual method with appropriate output region
   // first find out how many pieces extent can be split into.
