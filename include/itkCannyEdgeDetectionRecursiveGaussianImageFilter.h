@@ -130,18 +130,14 @@ public:
   itkNewMacro(Self);
 
   /** Typedef to describe the output image region type. */
-  typedef typename TOutputImage::RegionType OutputImageRegionType;
-  typedef typename TInputImage::RegionType  InputImageRegionType;
+  using OutputImageRegionType = typename TOutputImage::RegionType;
+  using InputImageRegionType = typename TInputImage::RegionType;
 
   /** Run-time type information (and related methods). */
   itkOverrideGetNameOfClassMacro(CannyEdgeDetectionRecursiveGaussianImageFilter);
 
-  /** ImageDimension constant    */
-  static constexpr unsigned int ImageDimension = TInputImage::ImageDimension;
-  static constexpr unsigned int OutputImageDimension = TOutputImage::ImageDimension;
-
-  /** Typedef of double containers */
-  using ArrayType = FixedArray<double, Self::ImageDimension>;
+  /** Typedef of double containers. */
+  using ArrayType = FixedArray<double, itkGetStaticConstMacro(ImageDimension)>;
 
   /** Smoothing parameters for the Gaussian filter. */
   void
