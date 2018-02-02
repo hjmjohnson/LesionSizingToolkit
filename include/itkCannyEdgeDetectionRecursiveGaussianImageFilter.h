@@ -134,7 +134,11 @@ public:
   using InputImageRegionType = typename TInputImage::RegionType;
 
   /** Run-time type information (and related methods). */
-  itkOverrideGetNameOfClassMacro(CannyEdgeDetectionRecursiveGaussianImageFilter);
+  itkTypeMacro(CannyEdgeDetectionRecursiveGaussianImageFilter, ImageToImageFilter);
+
+  /** ImageDimension constant. */
+  static constexpr unsigned int ImageDimension = TInputImage::ImageDimension;
+  static constexpr unsigned int OutputImageDimension = TOutputImage::ImageDimension;
 
   /** Typedef of double containers. */
   using ArrayType = FixedArray<double, itkGetStaticConstMacro(ImageDimension)>;
