@@ -90,6 +90,8 @@ class ITK_TEMPLATE_EXPORT CannyEdgeDetectionRecursiveGaussianImageFilter
   : public ImageToImageFilter<TInputImage, TOutputImage>
 {
 public:
+  ITK_DISALLOW_COPY_AND_ASSIGN(CannyEdgeDetectionRecursiveGaussianImageFilter);
+
   /** Standard "Self" & Superclass type alias.  */
   using Self = CannyEdgeDetectionRecursiveGaussianImageFilter;
   using Superclass = ImageToImageFilter<TInputImage, TOutputImage>;
@@ -206,8 +208,6 @@ protected:
   using MultiplyImageFilterType = MultiplyImageFilter<OutputImageType, OutputImageType, OutputImageType>;
 
 private:
-  ITK_DISALLOW_COPY_AND_ASSIGN(CannyEdgeDetectionRecursiveGaussianImageFilter);
-
   ~CannyEdgeDetectionRecursiveGaussianImageFilter() override {}
 
   /** Thread-Data structure. */
