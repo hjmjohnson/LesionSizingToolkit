@@ -26,6 +26,7 @@
 #include "itkGradientMagnitudeImageFilter.h"
 #include "itkImageRegionIteratorWithIndex.h"
 #include "itkMath.h"
+#include "itkProgressTransformer.h"
 
 namespace itk
 {
@@ -222,6 +223,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Gener
   m_GaussianFilter->Update();
   this->UpdateProgress(0.01f);
 
+  ProgressTransformer progress1(0.01f, 0.45f, this);
   // 2. Calculate 2nd order directional derivative
   // Calculate the 2nd order directional derivative of the smoothed image.
   // The output of this filter will be used to store the directional
@@ -232,16 +234,15 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Gener
     [this](const OutputImageRegionType & outputRegionForThread) {
       this->ThreadedCompute2ndDerivative(outputRegionForThread);
     },
-    nullptr);
-  this->UpdateProgress(0.45f);
+    progress1.GetProcessObject());
 
+  ProgressTransformer progress2(0.45f, 0.9f, this);
   this->GetMultiThreader()->template ParallelizeImageRegion<TOutputImage::ImageDimension>(
     this->GetOutput()->GetRequestedRegion(),
     [this](const OutputImageRegionType & outputRegionForThread) {
       this->ThreadedCompute2ndDerivativePos(outputRegionForThread);
     },
-    nullptr);
-  this->UpdateProgress(0.9f);
+    progress2.GetProcessObject());
 
   // 3. Non-maximum suppression
 
