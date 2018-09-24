@@ -198,7 +198,7 @@ protected:
   using MultiplyImageFilterType = MultiplyImageFilter<OutputImageType, OutputImageType, OutputImageType>;
 
 private:
-  ~CannyEdgeDetectionRecursiveGaussianImageFilter() override {}
+  ~CannyEdgeDetectionRecursiveGaussianImageFilter() override = default;
 
   /** Allocate storage for update buffers used during calculation of multiple steps. */
   void
