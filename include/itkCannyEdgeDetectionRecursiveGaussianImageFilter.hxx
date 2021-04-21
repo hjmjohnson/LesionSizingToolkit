@@ -155,7 +155,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Compu
   //  double alpha = 0.01;
 
   // Calculate 1st & 2nd order derivative
-  for (unsigned int i = 0; i < ImageDimension; i++)
+  for (unsigned int i = 0; i < ImageDimension; ++i)
   {
     dx[i] = innerProduct(m_ComputeCannyEdgeSlice[i], it, m_ComputeCannyEdge1stDerivativeOper);
     dxx[i] = innerProduct(m_ComputeCannyEdgeSlice[i], it, m_ComputeCannyEdge2ndDerivativeOper);
@@ -165,9 +165,9 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Compu
 
   int k = 0;
   // Calculate the 2nd derivative
-  for (unsigned int i = 0; i < ImageDimension - 1; i++)
+  for (unsigned int i = 0; i < ImageDimension - 1; ++i)
   {
-    for (unsigned int j = i + 1; j < ImageDimension; j++)
+    for (unsigned int j = i + 1; j < ImageDimension; ++j)
     {
       dxy[k] = 0.25 * it.GetPixel(m_Center - m_Stride[i] - m_Stride[j]) -
                0.25 * it.GetPixel(m_Center - m_Stride[i] + m_Stride[j]) -
@@ -180,7 +180,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Compu
   }
 
   auto gradMag = static_cast<OutputImagePixelType>(0.0001); // alpha * alpha;
-  for (unsigned int i = 0; i < ImageDimension; i++)
+  for (unsigned int i = 0; i < ImageDimension; ++i)
   {
     deriv += dx[i] * dx[i] * dxx[i];
     gradMag += dx[i] * dx[i];
@@ -365,7 +365,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Follo
     uit.Value() = 1;
 
     // Search the neighbors for new indices to add to the list.
-    for (int i = 0; i < nSize; i++)
+    for (int i = 0; i < nSize; ++i)
     {
       nIndex = oit.GetIndex(i);
       uit.SetIndex(nIndex);
@@ -446,7 +446,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Threa
     {
       gradMag = 0.0001;
 
-      for (unsigned int i = 0; i < ImageDimension; i++)
+      for (unsigned int i = 0; i < ImageDimension; ++i)
       {
         dx[i] = IP(m_ComputeCannyEdgeSlice[i], bit, m_ComputeCannyEdge1stDerivativeOper);
         gradMag += dx[i] * dx[i];
@@ -456,7 +456,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Threa
 
       gradMag = std::sqrt((double)gradMag);
       derivPos = zero;
-      for (unsigned int i = 0; i < ImageDimension; i++)
+      for (unsigned int i = 0; i < ImageDimension; ++i)
       {
         // First calculate the directional derivative
         directional[i] = dx[i] / gradMag;
