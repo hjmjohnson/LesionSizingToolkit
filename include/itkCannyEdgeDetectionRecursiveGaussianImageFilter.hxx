@@ -453,7 +453,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Threa
         dx1[i] = IP(m_ComputeCannyEdgeSlice[i], bit1, m_ComputeCannyEdge1stDerivativeOper);
       }
 
-      gradMag = std::sqrt((double)gradMag);
+      gradMag = std::sqrt(static_cast<double>(gradMag));
       derivPos = zero;
       for (unsigned int i = 0; i < ImageDimension; ++i)
       {
