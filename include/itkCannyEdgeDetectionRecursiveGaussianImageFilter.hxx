@@ -217,7 +217,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Gener
   m_GaussianFilter->SetSigmaArray(this->m_Sigma);
   m_GaussianFilter->SetNormalizeAcrossScale(true);
   m_GaussianFilter->SetInput(input);
-  // Modify to force excution, due to grafting complications
+  // Modify to force execution, due to grafting complications
   m_GaussianFilter->Modified();
   m_GaussianFilter->Update();
   this->UpdateProgress(0.01f);
