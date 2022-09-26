@@ -40,7 +40,7 @@ public:
 };
 
 /**
- *\class CannyEdgeDetectionRecursiveGaussianImageFilter
+ * \class CannyEdgeDetectionRecursiveGaussianImageFilter
  * \brief This filter is an implementation of a Canny edge detector for
  * scalar-valued images.
  *
