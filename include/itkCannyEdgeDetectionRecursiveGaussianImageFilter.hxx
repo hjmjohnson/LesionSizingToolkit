@@ -113,19 +113,17 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Threa
   radius.Fill(1);
 
   // Find the data-set boundary "faces"
-  typename NeighborhoodAlgorithm::ImageBoundaryFacesCalculator<TInputImage>::FaceListType faceList;
   NeighborhoodAlgorithm::ImageBoundaryFacesCalculator<TInputImage>                        bC;
-  faceList = bC(input, outputRegionForThread, radius);
-
-  typename NeighborhoodAlgorithm::ImageBoundaryFacesCalculator<TInputImage>::FaceListType::iterator fit;
+  typename NeighborhoodAlgorithm::ImageBoundaryFacesCalculator<TInputImage>::FaceListType faceList =
+    bC(input, outputRegionForThread, radius);
 
   // Process the non-boundady region and then each of the boundary faces.
   // These are N-d regions which border the edge of the buffer.
-  for (fit = faceList.begin(); fit != faceList.end(); ++fit)
+  for (const auto & face : faceList)
   {
-    NeighborhoodType bit(radius, input, *fit);
+    NeighborhoodType bit(radius, input, face);
 
-    it = ImageRegionIterator<OutputImageType>(this->m_OutputImage, *fit);
+    it = ImageRegionIterator<OutputImageType>(this->m_OutputImage, face);
     bit.OverrideBoundaryCondition(&nbc);
     bit.GoToBegin();
 
@@ -410,11 +408,9 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Threa
   radius.Fill(1);
 
   // Find the data-set boundary "faces"
-  typename NeighborhoodAlgorithm::ImageBoundaryFacesCalculator<TInputImage>::FaceListType faceList;
   NeighborhoodAlgorithm::ImageBoundaryFacesCalculator<TInputImage>                        bC;
-  faceList = bC(input, outputRegionForThread, radius);
-
-  typename NeighborhoodAlgorithm::ImageBoundaryFacesCalculator<TInputImage>::FaceListType::iterator fit;
+  typename NeighborhoodAlgorithm::ImageBoundaryFacesCalculator<TInputImage>::FaceListType faceList =
+    bC(input, outputRegionForThread, radius);
 
   InputImagePixelType zero = NumericTraits<InputImagePixelType>::ZeroValue();
 
@@ -431,11 +427,11 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Threa
 
   NeighborhoodInnerProduct<OutputImageType> IP;
 
-  for (fit = faceList.begin(); fit != faceList.end(); ++fit)
+  for (const auto & face : faceList)
   {
-    bit = ConstNeighborhoodIterator<InputImageType>(radius, input, *fit);
-    bit1 = ConstNeighborhoodIterator<InputImageType>(radius, input1, *fit);
-    it = ImageRegionIterator<OutputImageType>(output, *fit);
+    bit = ConstNeighborhoodIterator<InputImageType>(radius, input, face);
+    bit1 = ConstNeighborhoodIterator<InputImageType>(radius, input1, face);
+    it = ImageRegionIterator<OutputImageType>(output, face);
     bit.OverrideBoundaryCondition(&nbc);
     bit.GoToBegin();
     bit1.GoToBegin();
