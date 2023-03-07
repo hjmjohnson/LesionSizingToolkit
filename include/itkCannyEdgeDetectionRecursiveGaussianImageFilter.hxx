@@ -285,10 +285,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Hyste
   // fix me
   ImageRegionIterator<TOutputImage> oit(input, input->GetRequestedRegion());
 
-  oit.GoToBegin();
-
   ImageRegionIterator<TOutputImage> uit(this->m_OutputImage, this->m_OutputImage->GetRequestedRegion());
-  uit.GoToBegin();
   while (!uit.IsAtEnd())
   {
     uit.Value() = NumericTraits<OutputImagePixelType>::ZeroValue();
