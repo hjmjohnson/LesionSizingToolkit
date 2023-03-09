@@ -158,7 +158,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Compu
     dxx[i] = innerProduct(m_ComputeCannyEdgeSlice[i], it, m_ComputeCannyEdge2ndDerivativeOper);
   }
 
-  OutputImagePixelType deriv = NumericTraits<OutputImagePixelType>::ZeroValue();
+  OutputImagePixelType deriv{};
 
   int k = 0;
   // Calculate the 2nd derivative
@@ -409,7 +409,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Threa
   typename NeighborhoodAlgorithm::ImageBoundaryFacesCalculator<TInputImage>::FaceListType faceList =
     bC(input, outputRegionForThread, radius);
 
-  InputImagePixelType zero = NumericTraits<InputImagePixelType>::ZeroValue();
+  InputImagePixelType zero{};
 
   OutputImagePixelType dx[ImageDimension];
   OutputImagePixelType dx1[ImageDimension];
