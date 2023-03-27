@@ -117,7 +117,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Threa
   typename NeighborhoodAlgorithm::ImageBoundaryFacesCalculator<TInputImage>::FaceListType faceList =
     bC(input, outputRegionForThread, radius);
 
-  // Process the non-boundady region and then each of the boundary faces.
+  // Process the non-boundary region and then each of the boundary faces.
   // These are N-d regions which border the edge of the buffer.
   for (const auto & face : faceList)
   {
@@ -261,7 +261,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Gener
   m_MultiplyImageFilter->Update();
   this->UpdateProgress(0.95f);
 
-  // Then do the double threshoulding upon the edge responses
+  // Then do the double thresholding upon the edge responses
   this->HysteresisThresholding();
   this->UpdateProgress(0.99f);
 
