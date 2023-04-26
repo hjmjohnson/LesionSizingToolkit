@@ -137,10 +137,10 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Threa
 }
 
 template <typename TInputImage, typename TOutputImage>
-typename CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::OutputImagePixelType
+auto
 CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::ComputeCannyEdge(
   const NeighborhoodType & it,
-  void *                   itkNotUsed(globalData))
+  void *                   itkNotUsed(globalData)) -> OutputImagePixelType
 {
 
   NeighborhoodInnerProduct<OutputImageType> innerProduct;
