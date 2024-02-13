@@ -32,8 +32,8 @@ namespace itk
 template <typename TInputImage, typename TOutputImage>
 CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage,
                                                TOutputImage>::CannyEdgeDetectionRecursiveGaussianImageFilter()
-  : m_UpperThreshold(NumericTraits<OutputImagePixelType>::ZeroValue())
-  , m_LowerThreshold(NumericTraits<OutputImagePixelType>::ZeroValue())
+  : m_UpperThreshold(OutputImagePixelType{})
+  , m_LowerThreshold(OutputImagePixelType{})
 {
   unsigned int i;
 
@@ -288,7 +288,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Hyste
   ImageRegionIterator<TOutputImage> uit(this->m_OutputImage, this->m_OutputImage->GetRequestedRegion());
   while (!uit.IsAtEnd())
   {
-    uit.Value() = NumericTraits<OutputImagePixelType>::ZeroValue();
+    uit.Value() = OutputImagePixelType{};
     ++uit;
   }
 
