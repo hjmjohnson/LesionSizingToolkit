@@ -44,8 +44,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage,
   m_UpdateBuffer1 = OutputImageType::New();
 
   // Set up neighborhood slices for all the dimensions.
-  typename Neighborhood<OutputImagePixelType, ImageDimension>::RadiusType r;
-  r.Fill(1);
+  constexpr auto r = MakeFilled<typename Neighborhood<OutputImagePixelType, ImageDimension>::RadiusType>(1);
 
   // Dummy neighborhood used to set up the slices
   Neighborhood<OutputImagePixelType, ImageDimension> it;
@@ -109,8 +108,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Threa
   typename OutputImageType::Pointer input = m_GaussianFilter->GetOutput();
 
   // Set iterator radius
-  Size<ImageDimension> radius;
-  radius.Fill(1);
+  constexpr auto radius = Size<ImageDimension>::Filled(1);
 
   // Find the data-set boundary "faces"
   NeighborhoodAlgorithm::ImageBoundaryFacesCalculator<TInputImage>                        bC;
@@ -206,8 +204,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Gener
   output->Graft(this->GetOutput());
   this->m_OutputImage = output;
 
-  typename ZeroCrossingImageFilter<TOutputImage, TOutputImage>::Pointer zeroCrossFilter =
-    ZeroCrossingImageFilter<TOutputImage, TOutputImage>::New();
+  auto zeroCrossFilter = ZeroCrossingImageFilter<TOutputImage, TOutputImage>::New();
 
   this->AllocateUpdateBuffer();
 
@@ -325,8 +322,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Follo
   ListNodeType * node;
 
   // Assign iterator radius
-  Size<ImageDimension> radius;
-  radius.Fill(1);
+  constexpr auto radius = Size<ImageDimension>::Filled(1);
 
   ConstNeighborhoodIterator<TOutputImage> oit(
     radius, multiplyImageFilterOutput, multiplyImageFilterOutput->GetRequestedRegion());
@@ -401,8 +397,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Threa
   typename InputImageType::Pointer output = m_UpdateBuffer1;
 
   // Set iterator radius
-  Size<ImageDimension> radius;
-  radius.Fill(1);
+  constexpr auto radius = Size<ImageDimension>::Filled(1);
 
   // Find the data-set boundary "faces"
   NeighborhoodAlgorithm::ImageBoundaryFacesCalculator<TInputImage>                        bC;
