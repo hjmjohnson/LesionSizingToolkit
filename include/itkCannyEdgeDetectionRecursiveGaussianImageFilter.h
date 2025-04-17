@@ -107,7 +107,7 @@ public:
   using InputImagePixelType = typename TInputImage::PixelType;
   using OutputImagePixelType = typename TOutputImage::PixelType;
   using IndexType = typename TInputImage::IndexType;
-  using SizeValueType = typename TInputImage::SizeValueType;
+  using SizeValueType = itk::SizeValueType;
 
   using GaussianImageFilterType = SmoothingRecursiveGaussianImageFilter<InputImageType, OutputImageType>;
   using ScalarRealType = typename GaussianImageFilterType::ScalarRealType;
