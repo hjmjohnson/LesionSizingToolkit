@@ -296,9 +296,9 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Hyste
     if (value > m_UpperThreshold)
     {
       node = m_NodeStore->Borrow();
-      node->m_Value = oit.GetIndex();
+      node->m_Value = oit.ComputeIndex();
       m_NodeList->PushFront(node);
-      FollowEdge(oit.GetIndex(), multiplyImageFilterOutput);
+      FollowEdge(oit.ComputeIndex(), multiplyImageFilterOutput);
     }
 
     ++oit;
