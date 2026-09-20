@@ -1,9 +1,11 @@
 name: Build, test, package
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
+      - itk6-python-build
     tags:
       - 'v*'
   pull_request:
@@ -15,10 +17,11 @@ jobs:
     uses: InsightSoftwareConsortium/ITKRemoteModuleBuildTestPackageAction/.github/workflows/build-test-cxx.yml@v5.4.6
 
   python-build-workflow:
-    uses: InsightSoftwareConsortium/ITKRemoteModuleBuildTestPackageAction/.github/workflows/build-test-package-python.yml@v5.4.6
+    uses: InsightSoftwareConsortium/ITKRemoteModuleBuildTestPackageAction/.github/workflows/build-test-package-python.yml@main
     with:
-      itk-wheel-tag: 'v5.4.5'
-      itk-python-package-tag: 'v5.4.5'
+      itk-wheel-tag: 'v6.0rc01.dev20260915'
+      itk-python-package-org: 'BRAINSia'
+      itk-python-package-tag: 'itk6-build-system-v2'
+      python3-minor-versions: '["11"]'
+      manylinux-platforms: '["_2_28-x64"]'
       test-notebooks: false
-    secrets:
-      pypi_password: ${{ secrets.pypi_password }}
