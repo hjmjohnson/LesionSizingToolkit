@@ -116,7 +116,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Threa
   {
     NeighborhoodType bit(radius, input, face);
 
-    ImageRegionIterator it(this->m_OutputImage, face);
+    ImageRegionIterator<TOutputImage> it(this->m_OutputImage, face);
     bit.OverrideBoundaryCondition(&nbc);
     bit.GoToBegin();
 
@@ -275,9 +275,9 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Hyste
   ListNodeType * node = nullptr;
 
   // fix me
-  ImageRegionIterator oit(input, input->GetRequestedRegion());
+  ImageRegionIterator<TOutputImage> oit(input, input->GetRequestedRegion());
 
-  ImageRegionIterator uit(this->m_OutputImage, this->m_OutputImage->GetRequestedRegion());
+  ImageRegionIterator<TOutputImage> uit(this->m_OutputImage, this->m_OutputImage->GetRequestedRegion());
   while (!uit.IsAtEnd())
   {
     uit.Value() = OutputImagePixelType{};
@@ -413,7 +413,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Threa
   {
     bit = ConstNeighborhoodIterator<InputImageType>(radius, input, face);
     bit1 = ConstNeighborhoodIterator<InputImageType>(radius, input1, face);
-    ImageRegionIterator it(output, face);
+    ImageRegionIterator<TOutputImage> it(output, face);
     bit.OverrideBoundaryCondition(&nbc);
     bit.GoToBegin();
     bit1.GoToBegin();
