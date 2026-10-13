@@ -414,6 +414,8 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Follo
   uit.SetIndex(index);
   if (uit.Get() == 1)
   {
+    m_NodeStore->Return(m_NodeList->Front());
+    m_NodeList->PopFront();
     return;
   }
 

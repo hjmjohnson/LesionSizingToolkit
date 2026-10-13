@@ -1,6 +1,7 @@
 itk_module_test()
 set(LesionSizingToolkitTests
 itkBinaryThresholdFeatureGeneratorTest1.cxx
+itkCannyEdgeDetectionRecursiveGaussianImageFilterTest1.cxx
 itkCannyEdgesDistanceAdvectionFieldFeatureGeneratorTest1.cxx
 itkCannyEdgesDistanceFeatureGeneratorTest1.cxx
 itkCannyEdgesFeatureGeneratorTest1.cxx
@@ -263,6 +264,10 @@ itk_add_test(NAME itkCannyEdgesDistanceFeatureGeneratorTest1
   0.7 # Sigma
   150 # Upper hysteresis threshold
   75  # Lower hysteresis threshold
+ )
+
+itk_add_test(NAME itkCannyEdgeDetectionRecursiveGaussianImageFilterTest1
+  COMMAND LesionSizingToolkitTestDriver itkCannyEdgeDetectionRecursiveGaussianImageFilterTest1
  )
 
 itk_add_test(NAME itkCannyEdgesFeatureGeneratorTest1
