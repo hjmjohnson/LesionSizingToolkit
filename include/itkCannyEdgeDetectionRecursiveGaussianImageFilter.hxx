@@ -38,8 +38,6 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage,
   , m_GaussianFilter(GaussianImageFilterType::New())
   , m_MultiplyImageFilter(MultiplyImageFilterType::New())
 {
-  unsigned int i;
-
   m_Sigma.Fill(1.0);
 
   // Set up neighborhood slices for all the dimensions.
@@ -205,7 +203,7 @@ CannyEdgeDetectionRecursiveGaussianImageFilter<TInputImage, TOutputImage>::Gener
 
   this->AllocateUpdateBuffer();
 
-  // 1.Apply the Gaussian Filter to the input image.-------
+  // 1.Apply the Gaussian Filter to the input image
   m_GaussianFilter->SetSigmaArray(this->m_Sigma);
   m_GaussianFilter->SetNormalizeAcrossScale(true);
   m_GaussianFilter->SetInput(input);
