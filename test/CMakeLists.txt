@@ -2,6 +2,12 @@ itk_module_test()
 set(LesionSizingToolkitTests
 itkBinaryThresholdFeatureGeneratorTest1.cxx
 itkCannyEdgeDetectionRecursiveGaussianImageFilterTest1.cxx
+itkCannyEdgeDetectionRecursiveGaussianImageFilterTest2.cxx
+itkCannyEdgeDetectionRecursiveGaussianImageFilterTest3.cxx
+itkCannyEdgeDetectionRecursiveGaussianImageFilterTest4.cxx
+itkCannyEdgeDetectionRecursiveGaussianImageFilterTest5.cxx
+itkCannyEdgeDetectionRecursiveGaussianImageFilterTest6.cxx
+itkCannyEdgeDetectionRecursiveGaussianImageFilterTest7.cxx
 itkCannyEdgesDistanceAdvectionFieldFeatureGeneratorTest1.cxx
 itkCannyEdgesDistanceFeatureGeneratorTest1.cxx
 itkCannyEdgesFeatureGeneratorTest1.cxx
@@ -269,6 +275,51 @@ itk_add_test(NAME itkCannyEdgesDistanceFeatureGeneratorTest1
 itk_add_test(NAME itkCannyEdgeDetectionRecursiveGaussianImageFilterTest1
   COMMAND LesionSizingToolkitTestDriver itkCannyEdgeDetectionRecursiveGaussianImageFilterTest1
  )
+
+itk_add_test(NAME itkCannyEdgeDetectionRecursiveGaussianImageFilterTest2
+  COMMAND LesionSizingToolkitTestDriver
+  --compare ${TEMP}/CannyEdgeDetectionRecursiveGaussianImageFilterTest2_A.png
+            ${TEMP}/CannyEdgeDetectionRecursiveGaussianImageFilterTest2_B.png
+  itkCannyEdgeDetectionRecursiveGaussianImageFilterTest2
+  ${TEST_DATA_ROOT}/Input/cthead1.png
+  ${TEMP}/CannyEdgeDetectionRecursiveGaussianImageFilterTest2_A.png
+  ${TEMP}/CannyEdgeDetectionRecursiveGaussianImageFilterTest2_B.png
+ )
+
+itk_add_test(NAME itkCannyEdgeDetectionRecursiveGaussianImageFilterTest3
+  COMMAND LesionSizingToolkitTestDriver
+  --compare ${TEST_DATA_ROOT}/Baseline/CannyEdgeDetectionRecursiveGaussianImageFilterTest3.png
+            ${TEMP}/CannyEdgeDetectionRecursiveGaussianImageFilterTest3.png
+  itkCannyEdgeDetectionRecursiveGaussianImageFilterTest3
+  ${TEST_DATA_ROOT}/Input/cthead1.png
+  ${TEMP}/CannyEdgeDetectionRecursiveGaussianImageFilterTest3.png
+ )
+
+itk_add_test(NAME itkCannyEdgeDetectionRecursiveGaussianImageFilterTest4
+  COMMAND LesionSizingToolkitTestDriver
+  --compare ${TEMP}/CannyEdgeDetectionRecursiveGaussianImageFilterTest4_A.mha
+            ${TEMP}/CannyEdgeDetectionRecursiveGaussianImageFilterTest4_B.mha
+  itkCannyEdgeDetectionRecursiveGaussianImageFilterTest4
+  ${TEST_DATA_ROOT}/Input/PartSolidLesionCropped.mha
+  ${TEMP}/CannyEdgeDetectionRecursiveGaussianImageFilterTest4_A.mha
+  ${TEMP}/CannyEdgeDetectionRecursiveGaussianImageFilterTest4_B.mha
+ )
+
+itk_add_test(NAME itkCannyEdgeDetectionRecursiveGaussianImageFilterTest5
+  COMMAND LesionSizingToolkitTestDriver itkCannyEdgeDetectionRecursiveGaussianImageFilterTest5
+ )
+# InBounds compares against the region size instead of the region, so the result depends on the start index.
+set_tests_properties(itkCannyEdgeDetectionRecursiveGaussianImageFilterTest5 PROPERTIES WILL_FAIL TRUE)
+
+itk_add_test(NAME itkCannyEdgeDetectionRecursiveGaussianImageFilterTest6
+  COMMAND LesionSizingToolkitTestDriver itkCannyEdgeDetectionRecursiveGaussianImageFilterTest6
+ )
+
+itk_add_test(NAME itkCannyEdgeDetectionRecursiveGaussianImageFilterTest7
+  COMMAND LesionSizingToolkitTestDriver itkCannyEdgeDetectionRecursiveGaussianImageFilterTest7
+ )
+# The member sub-filters keep the previous input's regions, so a larger second input throws.
+set_tests_properties(itkCannyEdgeDetectionRecursiveGaussianImageFilterTest7 PROPERTIES WILL_FAIL TRUE)
 
 itk_add_test(NAME itkCannyEdgesFeatureGeneratorTest1
   COMMAND LesionSizingToolkitTestDriver itkCannyEdgesFeatureGeneratorTest1
