@@ -19,7 +19,7 @@
 #define itkCannyEdgeDetectionRecursiveGaussianImageFilter_h
 
 #include "itkConstNeighborhoodIterator.h"
-#include "itkSmoothingRecursiveGaussianImageFilter.h"
+#include "itkDiscreteGaussianImageFilter.h"
 #include "itkMultiplyImageFilter.h"
 #include "itkMultiThreaderBase.h"
 #include "itkDerivativeOperator.h"
@@ -64,8 +64,8 @@ public:
  * by the algorithm.
  *
  * \par
- * Sigma is used in the Gaussian smoothing of the input image.
- * See  itkSmoothingRecursiveGaussianImageFilter for information on these
+ * Variance and Maximum error are used in the Gaussian smoothing of the input
+ * image.  See  itkDiscreteGaussianImageFilter for information on these
  * parameters.
  *
  * \par
@@ -77,11 +77,10 @@ public:
  * \todo Edge-linking will be added when an itk connected component labeling
  * algorithm is available.
  *
- * \sa SmoothingRecursiveGaussianImageFilter
+ * \sa DiscreteGaussianImageFilter
  * \sa ZeroCrossingImageFilter
  * \sa ThresholdImageFilter
  * \ingroup ITKImageFeature
- * \ingroup LesionSizingToolkit
  */
 template <typename TInputImage, typename TOutputImage>
 class ITK_TEMPLATE_EXPORT CannyEdgeDetectionRecursiveGaussianImageFilter
@@ -139,20 +138,49 @@ public:
   /** Typedef of double containers. */
   using ArrayType = FixedArray<double, Self::ImageDimension>;
 
-  using ScalarRealType =
-    typename SmoothingRecursiveGaussianImageFilter<InputImageType, OutputImageType>::ScalarRealType;
-  using SigmaArrayType =
-    typename SmoothingRecursiveGaussianImageFilter<InputImageType, OutputImageType>::SigmaArrayType;
+  /** Set/Get the variance of the Gaussian smoothing filter. */
+  /** @ITKStartGrouping */
+  itkSetMacro(Variance, ArrayType);
+  itkGetConstMacro(Variance, const ArrayType);
+  /** @ITKEndGrouping */
 
-  /** Smoothing parameters for the Gaussian filter. */
+  /** Set/Get the maximum error of the Gaussian smoothing kernel in each dimensional
+   *  direction. */
+  /** @ITKStartGrouping */
+  itkSetMacro(MaximumError, ArrayType);
+  itkGetConstMacro(MaximumError, const ArrayType);
+  /** @ITKEndGrouping */
+
+  /** Set/Get the variance of the Gaussian smoothing filter. */
   void
-  SetSigmaArray(const SigmaArrayType & sigmas);
+  SetVariance(const typename ArrayType::ValueType v)
+  {
+    for (unsigned int i = 0; i < TInputImage::ImageDimension; ++i)
+    {
+      if (Math::NotExactlyEquals(m_Variance[i], v))
+      {
+        m_Variance.Fill(v);
+        this->Modified();
+        break;
+      }
+    }
+  }
+
+  /** Set/Get the MaximumError parameter used by the Gaussian smoothing filter
+   *  in this algorithm */
   void
-  SetSigma(ScalarRealType sigma);
-  SigmaArrayType
-  GetSigmaArray() const;
-  ScalarRealType
-  GetSigma() const;
+  SetMaximumError(const typename ArrayType::ValueType v)
+  {
+    for (unsigned int i = 0; i < TInputImage::ImageDimension; ++i)
+    {
+      if (Math::NotExactlyEquals(m_MaximumError[i], v))
+      {
+        m_MaximumError.Fill(v);
+        this->Modified();
+        break;
+      }
+    }
+  }
 
   /** \brief Set the upper threshold value for detected edges.
    */
@@ -184,7 +212,7 @@ protected:
   void
   GenerateData() override;
 
-  using GaussianImageFilterType = SmoothingRecursiveGaussianImageFilter<InputImageType, OutputImageType>;
+  using GaussianImageFilterType = DiscreteGaussianImageFilter<InputImageType, OutputImageType>;
   using MultiplyImageFilterType = MultiplyImageFilter<OutputImageType, OutputImageType, OutputImageType>;
 
 private:
@@ -219,7 +247,8 @@ private:
   void
   ThreadedCompute2ndDerivativePos(const OutputImageRegionType & outputRegionForThread);
 
-  SigmaArrayType m_Sigma{};
+  ArrayType m_Variance{};
+  ArrayType m_MaximumError{};
 
   OutputImagePixelType m_UpperThreshold{}; // should be float here?
   OutputImagePixelType m_LowerThreshold{}; // should be float here?
